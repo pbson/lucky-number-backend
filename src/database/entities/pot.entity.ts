@@ -2,22 +2,24 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
   ObjectID,
-  CreateDateColumn,
-  UpdateDateColumn,
 } from 'typeorm';
-
-@Entity({ name: 'pots' })
+import { User } from './user.entity';
+@Entity({ name: 'Pots' })
 export class Pot {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   public id: ObjectID;
 
-  @Column()
+  @Column({ name: 'winner_address' })
   public winnerAddress: string;
 
-  @CreateDateColumn({ name: 'created_at' })
-  public createdAt: Date;
+  @Column({ name: 'is_reward_claimed' })
+  public isRewardClaimed: boolean;
 
-  @UpdateDateColumn({ name: 'updated_at' })
-  public updatedAt: Date;
+  @OneToMany(type => User, player => player.address)
+  public players:  User[]
+
+  @Column({name: 'start_countdown_time'})
+  public startCountdownTime: Date;
 }
