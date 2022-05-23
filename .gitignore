@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# IDE
+/.vscode
+*.code-workspace
+
+# bundle
+packages/**/*.d.ts
+packages/**/*.js
+
+dist/
+
+# ENV
+.env
