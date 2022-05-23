@@ -6,7 +6,6 @@ export function setupSwagger(app: INestApplication, basePath: string): void {
     .setTitle('Lucky number API Document')
     .setVersion('1.0')
     .addServer(basePath)
-    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

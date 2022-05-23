@@ -2,24 +2,22 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  OneToMany,
   ObjectID,
 } from 'typeorm';
-import { User } from './user.entity';
 @Entity({ name: 'Pots' })
 export class Pot {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-  public id: ObjectID;
+  public _id: ObjectID;
 
-  @Column({ name: 'winner_address' })
+  @Column({ name: 'winner_address', nullable: true })
   public winnerAddress: string;
 
-  @Column({ name: 'is_reward_claimed' })
+  @Column({ name: 'is_reward_claimed', nullable: true })
   public isRewardClaimed: boolean;
 
-  @OneToMany(type => User, player => player.address)
-  public players:  User[]
+  @Column('text', { array: true, name: 'player_ids' })
+  public players:  string[]
 
-  @Column({name: 'start_countdown_time'})
+  @Column({name: 'start_countdown_time', nullable: true})
   public startCountdownTime: Date;
 }
